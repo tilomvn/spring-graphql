@@ -19,12 +19,12 @@ public class TestController {
 	
 	@QueryMapping
 	public Mono<Model> getModel() {
-		return Mono.just(new Model("body"));
+		return Mono.just(new Model("parent"));
 	}
 	
 	@QueryMapping
 	public Flux<Model> getModels() {
-		return Flux.just(new Model("body1"), new Model("body2"));
+		return Flux.just(new Model("parent"), new Model("parent2"));
 	}
 	
 	@QueryMapping
