@@ -29,22 +29,21 @@ public class TestController {
 	
 	@QueryMapping
 	public Flux<ChildModel> getChildModels() {
-		return Flux.just(new ChildModel("child1", new Model("parent")), 
-						 new ChildModel("child2", new Model("parent")),
-						 new ChildModel("child3", new Model("parent2"))
-						 );
+		return demosChild;
 	}
 	
 	@QueryMapping
 	public Flux<ChildModel> getChildModelsByModel(@Argument String parent) {
-		return Flux.just(new ChildModel("child1", new Model("parent")), 
-						 new ChildModel("child2", new Model("parent")),
-						 new ChildModel("child3", new Model("parent2"))
-						 ).filter(c -> c.model.data.equals(parent));
+		return demosChild.filter(c -> c.model.data.equals(parent));
 	}
 	
 	Random rand = new Random();
 	
+	Flux<ChildModel> demosChild = Flux.just(
+			new ChildModel("child1", new Model("parent")), 
+			new ChildModel("child2", new Model("parent")),
+			new ChildModel("child3", new Model("parent2")));
+
 	class Model {
 		long id;
 		String data;
