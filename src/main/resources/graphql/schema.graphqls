@@ -6,6 +6,14 @@ type Query {
   getChildModelsByModel(parent: String): [ChildModel]
 }
 
+type Mutation {
+  createModel(modelInput: ModelInput): Model
+}
+
+input ModelInput {
+  data: String
+}
+
 type Model {
   id: ID
   data: String

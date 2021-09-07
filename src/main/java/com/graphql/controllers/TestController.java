@@ -3,6 +3,7 @@ package com.graphql.controllers;
 import java.util.Random;
 
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -11,6 +12,13 @@ import reactor.core.publisher.Flux;
 
 @Controller
 public class TestController {
+	Random rand = new Random();
+	
+	Flux<ChildModel> demosChild = Flux.just(
+			new ChildModel("child1", new Model("parent")), 
+			new ChildModel("child2", new Model("parent")),
+			new ChildModel("child3", new Model("parent2")));
+
 	
 	@QueryMapping
 	public String hello() {
@@ -37,18 +45,22 @@ public class TestController {
 		return demosChild.filter(c -> c.model.data.equals(parent));
 	}
 	
-	Random rand = new Random();
+	@MutationMapping
+	public Mono<Model> createModel(@Argument ModelInput modelInput) {
+		return Mono.just(new Model(modelInput.data));
+	}
 	
-	Flux<ChildModel> demosChild = Flux.just(
-			new ChildModel("child1", new Model("parent")), 
-			new ChildModel("child2", new Model("parent")),
-			new ChildModel("child3", new Model("parent2")));
-
 	class Model {
 		long id;
 		String data;
 		
 		Model(String data) { this.id = rand.nextLong(); this.data = data; }
+	}
+	
+	static class ModelInput {
+		String data;
+		
+		void setData(String data) { this.data = data; }
 	}
 	
 	class ChildModel {
