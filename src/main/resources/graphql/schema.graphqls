@@ -1,0 +1,18 @@
+type Query {
+  hello: String
+  getModel: Model
+  getModels: [Model]
+  getChildModels: [ChildModel]
+  getChildModelsByModel(parent: String): [ChildModel]
+}
+
+type Model {
+  id: ID
+  data: String
+}
+
+type ChildModel {
+  id: ID
+  data: String
+  model: Model
+}
