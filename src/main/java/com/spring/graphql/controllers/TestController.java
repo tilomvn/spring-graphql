@@ -1,4 +1,4 @@
-package com.graphql.controllers;
+package com.spring.graphql.controllers;
 
 import java.util.Random;
 
