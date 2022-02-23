@@ -96,9 +96,14 @@
 							<apiPackageName>com.spring.graphql.codegen.api</apiPackageName>
 							<modelPackageName>com.spring.graphql.codegen.model</modelPackageName>
 							<customTypesMapping>
-								<DateTime>java.util.Date</DateTime>
+								<DateTime>java.time.LocalDateTime</DateTime>
+								<Date>java.time.LocalDate</Date>
 							</customTypesMapping>
 							<modelNameSuffix>TO</modelNameSuffix>
+							<generateApis>false</generateApis>
+							<apiReturnType>java.util.concurrent.CompletionStage</apiReturnType>
+							<generateEqualsAndHashCode>true</generateEqualsAndHashCode>
+							<generateToString>false</generateToString>
 							<parentInterfaces>
 								<queryResolver>graphql.kickstart.tools.GraphQLQueryResolver</queryResolver>
 								<mutationResolver>graphql.kickstart.tools.GraphQLMutationResolver</mutationResolver>

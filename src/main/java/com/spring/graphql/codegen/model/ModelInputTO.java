@@ -1,9 +1,10 @@
 package com.spring.graphql.codegen.model;
 
+import java.util.Objects;
 
 @javax.annotation.processing.Generated(
     value = "com.kobylynskyi.graphql.codegen.GraphQLCodegen",
-    date = "2022-02-23T14:55:04+0700"
+    date = "2022-02-23T15:06:55+0700"
 )
 public class ModelInputTO implements java.io.Serializable {
 
@@ -25,6 +26,22 @@ public class ModelInputTO implements java.io.Serializable {
         this.data = data;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final ModelInputTO that = (ModelInputTO) obj;
+        return Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
+    }
 
 
     public static ModelInputTO.Builder builder() {
