@@ -14,7 +14,7 @@
 	<name>spring-graphql</name>
 	<description>GraphQL</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -24,7 +24,7 @@
 		<dependency>
 	        <groupId>org.springframework.experimental</groupId>
 	        <artifactId>graphql-spring-boot-starter</artifactId>
-	        <version>1.0.0-SNAPSHOT</version>
+	        <version>1.0.0-M4</version>
 	    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,7 +34,7 @@
 		<dependency>
 	        <groupId>org.springframework.graphql</groupId>
 	        <artifactId>spring-graphql-test</artifactId>
-	        <version>1.0.0-SNAPSHOT</version>
+	        <version>1.0.0-M4</version>
 	        <scope>test</scope>
 	    </dependency>
 		<dependency>
@@ -43,7 +43,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<!-- <repositories>
+	<repositories>
 	    <repository>
 	        <id>spring-milestones</id>
 	        <name>Spring Milestones</name>
@@ -57,7 +57,7 @@
 	            <enabled>true</enabled>
 	        </snapshots>
 	    </repository>
-	</repositories> -->
+	</repositories>
 	<build>
 		<plugins>
 			<plugin>
