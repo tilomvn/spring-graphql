@@ -1,9 +1,9 @@
-package model;
+package com.spring.graphql.codegen.model;
 
 
 @javax.annotation.processing.Generated(
     value = "com.kobylynskyi.graphql.codegen.GraphQLCodegen",
-    date = "2022-02-23T12:04:44+0700"
+    date = "2022-02-23T14:55:04+0700"
 )
 public class ChildModelTO implements java.io.Serializable {
 

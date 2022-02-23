@@ -92,9 +92,9 @@
 								<graphqlSchemaPath>${project.basedir}/src/main/resources/graphql/schema.graphqls
 								</graphqlSchemaPath>
 							</graphqlSchemaPaths>
-							<outputDir>${project.basedir}/src/main/java/com/spring/graphql/codegen</outputDir>
-							<apiPackageName>api</apiPackageName>
-							<modelPackageName>model</modelPackageName>
+							<outputDir>${project.basedir}/src/main/java</outputDir>
+							<apiPackageName>com.spring.graphql.codegen.api</apiPackageName>
+							<modelPackageName>com.spring.graphql.codegen.model</modelPackageName>
 							<customTypesMapping>
 								<DateTime>java.util.Date</DateTime>
 							</customTypesMapping>
