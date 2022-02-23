@@ -1,0 +1,11 @@
+query getChildModelsByModel($parent: String)
+{
+    getChildModelsByModel(parent: $parent) {
+        id
+        data
+        model {
+            id
+            data
+        }
+    }
+}

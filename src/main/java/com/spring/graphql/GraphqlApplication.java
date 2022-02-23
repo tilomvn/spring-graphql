@@ -17,6 +17,7 @@ public class GraphqlApplication {
 	ApplicationRunner runner(GraphQLService graphQLService) {
 		return args -> {
 			graphQLService.getModels().forEach(modelTO -> System.out.println(modelTO.getId() + ":" + modelTO.getData()));
+			graphQLService.getChildModelsByModel("parent2").forEach(modelTO -> System.out.println(modelTO.getId() + ":" + modelTO.getData()));
 		};
 	}
 }

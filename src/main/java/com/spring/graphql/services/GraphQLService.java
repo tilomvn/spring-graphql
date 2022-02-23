@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.spring.graphql.codegen.model.ChildModelTO;
 import com.spring.graphql.codegen.model.ModelTO;
 import com.spring.graphql.config.GraphQLHost;
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +69,30 @@ public class GraphQLService {
         return null;
     }
 
+    public List<ChildModelTO> getChildModelsByModel(String parent) {
+        try {
+            var variables = objectMapper.createObjectNode();
+            variables.put("parent", parent);
+
+            var body = createBody("classpath:graphql-queries/getChildModelsByModel.gql", variables);
+            var headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+            var response = restTemplate.postForObject(graphQLHost.getHost(), new HttpEntity<>(body, headers), String.class);
+
+            var shapeNode = new ObjectMapper().readTree(response);
+            var models = shapeNode.get("data").get("getChildModelsByModel");
+
+            List<ChildModelTO> modelTOList = new ArrayList<>();
+            for (JsonNode jsonNode : models) {
+                var model = objectMapper.treeToValue(jsonNode, ChildModelTO.class);
+                modelTOList.add(model);
+            }
+            return modelTOList;
+        } catch (Exception e) {
+            log.error("Error occurred while getting the models: {}", e);
+        }
+        return null;
+    }
 
     public String createBody(String path, ObjectNode variables) {
         try {
