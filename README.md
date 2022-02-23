@@ -29,3 +29,4 @@ for retrieving data.
 ```
 * GraphQL UI for testing : http://localhost:5050/graphiql ![](/src/main/resources/GraphIQL-Query.png "") ![](/src/main/resources/GraphIQL-Mutation.png "") 
 * Reference: https://www.graphql-java.com/tutorials/getting-started-with-spring-boot/
+* Graphql Code Generation
