@@ -46,15 +46,12 @@ public class GraphQLService {
 
     public List<ModelTO> getModels() {
         try {
-            var variables = objectMapper.createObjectNode();
-            variables.put("identifier", "identifier");
-
-            var body = createBody("classpath:graphql-queries/getModels.gql", variables);
+            var body = createBody("classpath:graphql-queries/getModels.gql");
             var headers = new HttpHeaders();
             headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             var response = restTemplate.postForObject(graphQLHost.getHost(), new HttpEntity<>(body, headers), String.class);
 
-            var shapeNode = new ObjectMapper().readTree(response);
+            var shapeNode = objectMapper.readTree(response);
             var models = shapeNode.get("data").get("getModels");
 
             List<ModelTO> modelTOList = new ArrayList<>();
@@ -79,7 +76,7 @@ public class GraphQLService {
             headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             var response = restTemplate.postForObject(graphQLHost.getHost(), new HttpEntity<>(body, headers), String.class);
 
-            var shapeNode = new ObjectMapper().readTree(response);
+            var shapeNode = objectMapper.readTree(response);
             var models = shapeNode.get("data").get("getChildModelsByModel");
 
             List<ChildModelTO> modelTOList = new ArrayList<>();
@@ -94,16 +91,31 @@ public class GraphQLService {
         return null;
     }
 
-    public String createBody(String path, ObjectNode variables) {
+    String createBody(String path, ObjectNode variables) {
         try {
             var resource = resourcePatternResolver.getResource(path);
             var buffer = new BufferedReader(new InputStreamReader(resource.getInputStream()));
             var query = buffer.lines().collect(Collectors.joining());
 
-            var objectMapper = new ObjectMapper();
             var body = objectMapper.createObjectNode();
             body.put("query", query);
             body.set("variables", variables);
+
+            return body.toString();
+        } catch (Exception e) {
+            log.error("Error occurred while creating body: {}", e);
+        }
+        return null;
+    }
+
+    String createBody(String path) {
+        try {
+            var resource = resourcePatternResolver.getResource(path);
+            var buffer = new BufferedReader(new InputStreamReader(resource.getInputStream()));
+            var query = buffer.lines().collect(Collectors.joining());
+
+            var body = objectMapper.createObjectNode();
+            body.put("query", query);
 
             return body.toString();
         } catch (Exception e) {
