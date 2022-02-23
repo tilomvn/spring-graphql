@@ -1,0 +1,6 @@
+{
+    getModels {
+        id
+        data
+    }
+}

@@ -52,6 +52,10 @@
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>11.0.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 	<repositories>
 	    <repository>
@@ -76,11 +80,11 @@
 			</plugin>
 
 			<!-- GraphQL Codegen Maven plugin -->
-			<plugin>
+			<!--<plugin>
 				<groupId>io.github.kobylynskyi</groupId>
 				<artifactId>graphql-codegen-maven-plugin</artifactId>
-				<!-- use the latest available version:
-                https://search.maven.org/artifact/io.github.kobylynskyi/graphql-codegen-maven-plugin -->
+				&lt;!&ndash; use the latest available version:
+                https://search.maven.org/artifact/io.github.kobylynskyi/graphql-codegen-maven-plugin &ndash;&gt;
 				<version>5.4.0</version>
 				<executions>
 					<execution>
@@ -114,7 +118,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 			<!-- GraphQL Codegen Maven plugin -->
 		</plugins>
 	</build>
